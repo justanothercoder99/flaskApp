@@ -19,7 +19,6 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     width: 100%;
     max-width: 450px;
-    text-align: center;
 }
 
 /* Heading Style */
@@ -50,7 +49,6 @@ input {
 
 /* Button Style */
 .btn {
-    width: 100%;
     padding: 15px;
     background-color: #6200EE; /* Google purple */
     color: #FFFFFF;
