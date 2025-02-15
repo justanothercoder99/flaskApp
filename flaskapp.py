@@ -1,9 +1,15 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
 DB_CONNECTION_PATH = 'home/ubuntu/database.db'
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'txt'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # SQLite setup
 conn = sqlite3.connect(DB_CONNECTION_PATH)
@@ -11,6 +17,9 @@ c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS users ( id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL, first_name TEXT DEFAULT "lorem", last_name TEXT DEFAULT "ipsum", address MEDIUMTEXT DEFAULT "2600 Clifton Ave");''')
 conn.commit()
 conn.close()
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def home():
@@ -82,6 +91,32 @@ def profile(username):
     conn.close()
 
     return render_template('profile.html', user=user)
+
+@app.route('/upload')
+def renderUpload():
+    return render_template('upload.html', word_count=None)
+
+@app.route('/upload', methods=["POST"])
+def countUpload():
+    if 'file' not in request.files:
+        return redirect(request.url)
+        
+    file = request.files['file']
+        
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        with open(filepath, 'r') as f:
+            content = f.read()
+            word_count = len(content.split())
+        
+        return render_template('upload.html', word_count=word_count, filename=filename)
+    
+@app.route('/download/<filename>')
+def downloadFile(filename):
+    return redirect(url_for('static', filename='uploads/' + filename))
 
 if __name__ == '__main__':
     app.run(debug=True)
