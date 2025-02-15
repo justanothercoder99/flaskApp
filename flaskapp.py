@@ -5,8 +5,8 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-DB_CONNECTION_PATH = 'home/ubuntu/database.db'
-UPLOAD_FOLDER = 'home/ubuntu/uploads'
+DB_CONNECTION_PATH = '/home/ubuntu/database.db'
+UPLOAD_FOLDER = '/home/ubuntu/uploads'
 ALLOWED_EXTENSIONS = {'txt'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -116,7 +116,7 @@ def countUpload():
     
 @app.route('/download/<filename>')
 def downloadFile(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
