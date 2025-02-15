@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 DB_CONNECTION_PATH = 'home/ubuntu/database.db'
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'home/ubuntu/uploads'
 ALLOWED_EXTENSIONS = {'txt'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
