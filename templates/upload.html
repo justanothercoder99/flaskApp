@@ -13,6 +13,16 @@
         .btn {
             width: 100%;
         }
+
+        #word-count {
+            font-size: 1rem; /* Large font size */
+            font-weight: bold; /* Make text bold */
+            color: #FFEB3B; /* Yellow color for emphasis */
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #333333; /* Dark background for word count */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for emphasis */
+        }
     </style>
 </head>
 <body>
@@ -29,7 +39,7 @@
 
     {% if word_count is not none %}
     <div class="result">
-        <p><strong>Word Count:</strong> {{ word_count }}</p>
+        <p><strong>Word Count:</strong> <span id="word-count">{{ word_count }}</span></p>
         <a href="{{ url_for('downloadFile', filename=filename) }}" class="btn">Download Uploaded File</a>
     </div>
     {% endif %}
