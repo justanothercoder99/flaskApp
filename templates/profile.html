@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0; /* Light gray text */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            /* margin: 0 auto;*/
+            padding: 40px;
+            background-color: #1E1E1E;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+        }
+        h1 {
+            text-align: center;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+        .profile-info {
+            margin-bottom: 20px;
+        }
+        .profile-info label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+        .profile-info p {
+            display: inline-block;
+        }
+        .btn {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #6200EE;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #3700B3;
+        }
+        .btn:active {
+            background-color: #03DAC6; /* Google cyan */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>User Profile</h1>
+
+    <div class="profile-info">
+        <label for="username">Username:</label>
+        <p>{{ user[1] }}</p>
+    </div>
+    <div class="profile-info">
+        <label for="first_name">First Name:</label>
+        <p>{{ user[3] }}</p>
+    </div>
+    <div class="profile-info">
+        <label for="last_name">Last Name:</label>
+        <p>{{ user[4] }}</p>
+    </div>
+    <div class="profile-info">
+        <label for="email">Email:</label>
+        <p>{{ user[5] }}</p>
+    </div>
+    <div class="profile-info">
+        <label for="address">Address:</label>
+        <p>{{ user[6] if user[6] else 'Not provided' }}</p>
+    </div>
+
+    <a href="/edit_profile/{{ user[0] }}" class="btn">Edit Profile</a>
+</div>
+
+</body>
+</html>

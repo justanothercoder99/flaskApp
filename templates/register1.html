@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="password"], input[type="email"], textarea {
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Register</h1>
+    
+    <form action="/register" method="POST">
+        <!-- Username -->
+        <label for="username">Username (Required):</label>
+        <input type="text" id="username" name="username" required>
+
+        <!-- Password -->
+        <label for="password">Password (Required):</label>
+        <input type="password" id="password" name="password" required>
+
+        <!-- First Name -->
+        <label for="firstname">First Name (Required):</label>
+        <input type="text" id="firstname" name="firstname" required>
+
+        <!-- Last Name -->
+        <label for="lastname">Last Name (Required):</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <!-- Email -->
+        <label for="email">Email (Required):</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- Address (Optional) -->
+        <label for="address">Address (Optional):</label>
+        <textarea id="address" name="address" rows="1" placeholder="2600 Clifton Ave"></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit">Register</button>
+    </form>
+
+</body>
+</html>
