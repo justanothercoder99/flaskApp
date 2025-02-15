@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import sqlite3
 from werkzeug.utils import secure_filename
 
@@ -116,7 +116,7 @@ def countUpload():
     
 @app.route('/download/<filename>')
 def downloadFile(filename):
-    return redirect(url_for('static', filename='uploads/' + filename))
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
     app.run(debug=True)

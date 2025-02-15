@@ -30,7 +30,7 @@
     {% if word_count is not none %}
     <div class="result">
         <p><strong>Word Count:</strong> {{ word_count }}</p>
-        <a href="{{ url_for('download', filename=filename) }}" class="btn">Download Uploaded File</a>
+        <a href="{{ url_for('downloadFile', filename=filename) }}" class="btn">Download Uploaded File</a>
     </div>
     {% endif %}
 </div>
